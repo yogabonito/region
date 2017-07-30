@@ -105,14 +105,12 @@ def distribute_regions_among_components(n_regions, graph):
     return result
 
 
-def make_move(area, from_region, to_region, region_list_copy):
-    print("  move", area, "from", from_region, "to", to_region)
-    from_index = region_list_copy.index(from_region)
-    to_index = region_list_copy.index(to_region)
-    from_region.remove(area)
-    to_region.add(area)
-    region_list_copy[from_index] = from_region
-    region_list_copy[to_index] = to_region
+def make_move(area, from_idx, to_idx, region_list):
+    print("  move", area,
+          "  from", region_list[from_idx],
+          "  to", region_list[to_idx])
+    region_list[from_idx].remove(area)
+    region_list[to_idx].add(area)
 
 
 def objective_func(region_list, graph, attr="data"):
