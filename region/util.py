@@ -188,3 +188,45 @@ def regionalized_components(initial_sol, graph):
             if initial_sol[n1] != initial_sol[n2]:
                 comp.remove_edge(n1, n2)
         yield comp
+
+
+def region_list_to_dict(region_list):
+    """
+
+    Parameters
+    ----------
+    region_list : list of sets
+        A list of sets. Each set consists of areas belonging to the same
+        region. An example would be [{0, 1, 2, 5}, {3, 4, 6, 7, 8}].
+
+    Returns
+    -------
+    result_dict : dict
+        Each key is an area, each value is the corresponding region. An example
+        would be {0: 0, 1: 0, 2: 0, 3: 1, 4: 1, 5: 0, 6: 1, 7: 1, 8: 1}.
+
+    """
+    result_dict = {}
+    for region_idx, region in enumerate(region_list):
+        for area in region:
+            result_dict[area] = region_idx
+    return result_dict
+
+
+def dict_to_region_list(region_dict):
+    """
+    Inverse operation of `region_list_to_dict`.
+
+    Parameters
+    ----------
+    region_dict : dict
+
+    Returns
+    -------
+    region_list : list of sets
+
+    """
+    region_list = [set() for _ in range(max(region_dict.values()) + 1)]
+    for area in region_dict:
+        region_list[region_dict[area]].add(area)
+    return region_list

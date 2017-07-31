@@ -9,7 +9,8 @@ import networkx as nx
 
 from region.util import dataframe_to_dict, find_sublist_containing,\
                         generate_initial_sol, regionalized_components, \
-                        make_move, objective_func
+                        make_move, objective_func, region_list_to_dict, \
+    dict_to_region_list
 from region.move_allowing_strategies import AllowMoveStrategy, \
                                             AllowMoveAZP,\
                                             AllowMoveAZPSimulatedAnnealing
@@ -121,11 +122,7 @@ class AZP:
                 region_list_component = [set(area for area in comp.nodes())]
             # ... and collect the results
             region_list += region_list_component
-        result_dict = {}
-        for area in graph.nodes():
-            # print("area", area, "region_list", region_list)
-            result_dict[area] = find_sublist_containing(area, region_list,
-                                                        index=True)
+        result_dict = region_list_to_dict(region_list)
         return result_dict
 
     def _azp_connected_component(self, graph, initial_clustering):
@@ -218,7 +215,8 @@ class AZP:
 class AZPSimulatedAnnealing:
     def __init__(self, n_regions, init_temperature=None,
                  max_iterations=float("inf"), min_sa_moves=0,
-                 nonmoving_steps_before_stop=3, random_state=None):
+                 nonmoving_steps_before_stop=3,
+                 repetitions_before_termination=5, random_state=None):
 
         if init_temperature is not None:
             self.init_temperature = init_temperature
@@ -240,6 +238,9 @@ class AZPSimulatedAnnealing:
         self.min_sa_moves_reached = False
         self.move_made = False
         self.nonmoving_steps_before_stop = nonmoving_steps_before_stop
+
+        self.visited = []
+        self.reps_before_termination = repetitions_before_termination
 
     def fit(self, areas, data, contiguity=None, initial_sol=None,
             cooling_factor=0.85):
@@ -285,6 +286,17 @@ class AZPSimulatedAnnealing:
                     if old_sol == initial_sol:
                         print("BREAK")
                         break
+            print("visited", self.visited)
+            # added termination condition (not in Openshaw & Rao (1995))
+            print(initial_sol)
+            region_set = set(frozenset(region) for region in
+                             dict_to_region_list(initial_sol))
+            if self.visited.count(region_set) >= self.reps_before_termination:
+                print("VISITED", initial_sol, "FOR",
+                      self.reps_before_termination,
+                      "TIMES --> TERMINATING.")
+                break
+            self.visited.append(region_set)
             # step c
             print(("#"*60 + "\n") * 2 + "STEP C")
             t *= cooling_factor
