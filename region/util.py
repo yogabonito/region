@@ -121,3 +121,13 @@ def objective_func(region_list, graph, attr="data"):
                for i in range(len(region_list[r]))
                for j in range(len(region_list[r]))
                if i < j)
+
+
+def random_element_from(lst):
+    random_position = random.randrange(len(lst))
+    return lst[random_position]
+
+
+def pop_randomly_from(lst):
+    random_position = random.randrange(len(lst))
+    return lst.pop(random_position)
