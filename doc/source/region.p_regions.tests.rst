@@ -4,9 +4,14 @@ region\.p\_regions\.tests package
 Submodules
 ----------
 
-.. toctree::
+region\.p\_regions\.tests\.test\_exact module
+---------------------------------------------
 
-   region.p_regions.tests.test_exact
+.. automodule:: region.p_regions.tests.test_exact
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
