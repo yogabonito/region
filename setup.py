@@ -65,7 +65,9 @@ setup(
         'networkx<2.0.0',
         'numpy>=1.10.4',
         'pulp',
+        'pytest',
         'scipy',
+        'sklearn',
     ],
 
     python_requires='~=3.3',  # ~=3.3 means >=3.3 and <4
