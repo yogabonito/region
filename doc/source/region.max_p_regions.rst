@@ -1,32 +1,13 @@
 region\.max\_p\_regions package
 ===============================
 
-Subpackages
------------
-
-.. toctree::
-
-    region.max_p_regions.tests
-
 Submodules
 ----------
 
-region\.max\_p\_regions\.exact module
--------------------------------------
+.. toctree::
 
-.. automodule:: region.max_p_regions.exact
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-region\.max\_p\_regions\.heuristics module
-------------------------------------------
-
-.. automodule:: region.max_p_regions.heuristics
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   region.max_p_regions.exact
+   region.max_p_regions.heuristics
 
 Module contents
 ---------------

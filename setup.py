@@ -15,7 +15,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='region',
 
-    version='0.1.3',
+    version='0.1.4',
 
     description='Package offering regionalization algorithms',
     long_description=long_description,
