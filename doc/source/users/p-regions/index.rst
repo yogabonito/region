@@ -29,7 +29,7 @@ Assume we want to cluster the areas into two regions. :numref:`output` shows a p
 
    Output
 
-Defining the input data, calculating the solution and saving both figures takes less than 40 lines of code -- `check it out <../../../../source/users/p-regions/generate_figures.py>`_.
+Defining the input data, calculating the solution and saving both figures takes less than 40 lines of code -- `check it out <../../source/users/p-regions/generate_figures.py>`_.
 
 
 .. _p-region-exact:
