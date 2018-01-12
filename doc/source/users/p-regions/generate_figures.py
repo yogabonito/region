@@ -11,17 +11,25 @@ from region.p_regions.exact import PRegionsExact
 def build_path():
     directory = os.path.abspath(os.path.dirname(__file__))
     while "source" not in os.listdir(directory):  # move to doc directory
+        print("NO source dir in here:", directory)
         directory = os.path.dirname(directory)
+    print("FOUND IT! source is in", directory)
     doc_content = os.listdir(directory)
+    print("all contents in the directory:", doc_content)
     doc_content.remove('source')
+    
     directory = os.path.join(directory, doc_content[0])
     subdirs = os.listdir(directory)
     for d in subdirs:
+        print("Is the html-directory in ", d, "?")
         d_abs = os.path.join(directory, d)
         if any([f.endswith(".html") for f in os.listdir(d_abs)]):
             directory = d_abs
+            print("YES!!!!!!!!!!!!!!!!!!!!!!")
             break
+        print("NO")
     directory = os.path.join(directory, "users/p-regions")
+    print("let's save in", directory)
     return directory
 
 # function for saving image
