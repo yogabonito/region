@@ -184,3 +184,6 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
+# -- Enumerate figures ----------------------------------------------------
+numfig = True
+
