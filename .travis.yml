@@ -8,6 +8,8 @@ python:
 
 before_install:
   - pip -V
+  - sudo pip -V
+  - sudo -H pip -v
 
 install: "sudo -H pip install -r requirements.txt"
 
